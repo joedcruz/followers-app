@@ -10,8 +10,12 @@ app.use(express.static(__dirname + '/dist/hello-world'));
 //     res.status(200).sendFile(__dirname + '/dist/hello-world/index.html');
 // }
 
-app.get('*', function(req,res) {    
-    res.sendFile(path.join(__dirname+'/dist/hello-world/index.html'));
+// app.get('/*', function(req,res) {    
+//     res.sendFile(path.join(__dirname + '/dist/hello-world/index.html'));
+// });
+
+app.all('/*', function(req, res, next) {
+    res.sendFile('index.html', { root: __dirname});
 });
 
 // Start the app by listening on the default Heroku port
